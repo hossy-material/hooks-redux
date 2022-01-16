@@ -8,7 +8,8 @@ interface OwnProps {
 
 export const Event: React.VFC<OwnProps> = ({ event, dispatch }) => {
   const handleDeleteClick = (event: EventType) => () => {
-    dispatch({type: 'DELETE_EVENT', ...event})
+    const result = window.confirm(`イベント(id=${event.id})を削除してもよろしいですか？`)
+    result && dispatch({type: 'DELETE_EVENT', ...event})
   }
 
   return (

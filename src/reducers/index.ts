@@ -3,8 +3,8 @@ export type ActionType = 'CREATE_EVENT' | 'DELETE_EVENT' | 'DELETE_ALL_EVENTS'
 export type Action = {
   type : ActionType
   id?: number
-  title: string
-  body: string
+  title?: string
+  body?: string
 }
 
 export type EventType = Omit<Action, 'type'>
@@ -21,6 +21,7 @@ const events = (state: EventType[] = [], action: Action) => {
     case 'DELETE_EVENT':
       return state.filter(event => event.id !== action.id)
     case 'DELETE_ALL_EVENTS':
+      return []
     default:
       return state
   }

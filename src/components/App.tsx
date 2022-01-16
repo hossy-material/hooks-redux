@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from 'react';
-import reducer from '../reducers';
 import 'bootstrap/dist/css/bootstrap.min.css'
+
+import reducer from '../reducers';
 import { Event } from './Event'
 
 const App: React.VFC = () => {
@@ -15,6 +16,12 @@ const App: React.VFC = () => {
     setBody('')
   }
 
+  const deleteAllEvents = (e: React.MouseEvent) => {
+    e.preventDefault()
+    const result = window.confirm('全てのイベントを本当に削除してもよろしいですか？')
+    result && dispatch({type: 'DELETE_ALL_EVENTS'})
+  }
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value)
   }
@@ -23,7 +30,9 @@ const App: React.VFC = () => {
     setBody(e.target.value)
   }
 
-  console.log({state})
+  const unCreatable = title === '' || body === ''
+
+  const canDelete = state.length === 0
 
   return (
     <div className='container-fluid'>
@@ -39,8 +48,8 @@ const App: React.VFC = () => {
           <textarea className='form-control' id='formEventBody' value={body} onChange={handleTextAreaChange}/>
         </div>
 
-        <button className='btn btn-primary' onClick={addEvent}>イベントを作成する</button>
-        <button className='btn btn-danger'>全てのイベントを削除する</button>
+        <button className='btn btn-primary' onClick={addEvent} disabled={unCreatable}>イベントを作成する</button>
+        <button className='btn btn-danger' onClick={deleteAllEvents} disabled={canDelete}>全てのイベントを削除する</button>
       </form>
 
       <h4>イベント一覧</h4>
