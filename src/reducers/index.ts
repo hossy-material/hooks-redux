@@ -1,4 +1,4 @@
-export type ActionType = 'CREATE_EVENT' | 'DELETE_EVENT' | 'DELETE_ALL_EVENTS'
+type ActionType = 'CREATE_EVENT' | 'DELETE_EVENT' | 'DELETE_ALL_EVENTS'
 
 export type Action = {
   type : ActionType

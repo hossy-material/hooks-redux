@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Action, EventType } from '../reducers'
 
 interface OwnProps {
