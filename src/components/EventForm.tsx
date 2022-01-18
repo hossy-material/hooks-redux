@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
 
-import { EventType, Action } from '../reducers';
+import { useAppContext } from '../contexts/AppContext'
 
-interface OwnProps {
-  state: EventType[]
-  dispatch: React.Dispatch<Action>
-}
-
-export const EventForm: React.VFC<OwnProps> = ({ state, dispatch }) => {
+export const EventForm = () => {
+  const { state, dispatch } = useAppContext()
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 

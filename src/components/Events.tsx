@@ -1,14 +1,9 @@
-import React from 'react'
-
 import { Event } from './Event'
-import { EventType, Action } from '../reducers';
+import { useAppContext } from '../contexts/AppContext';
 
-interface OwnProps {
-  state: EventType[]
-  dispatch: React.Dispatch<Action>
-}
+export const Events = () => {
+  const { state } = useAppContext()
 
-export const Events: React.VFC<OwnProps> = ({ state, dispatch }) => {
   return(
     <>
       <h4>イベント一覧</h4>
@@ -22,7 +17,7 @@ export const Events: React.VFC<OwnProps> = ({ state, dispatch }) => {
           </tr>
         </thead>
         <tbody>
-          {state.map((event, index) => (<Event key={index} event={event} dispatch={dispatch} />))}
+          {state.map((event, index) => (<Event key={index} event={event} />))}
         </tbody>
       </table>
     </>

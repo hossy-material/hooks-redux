@@ -1,13 +1,15 @@
 import React from 'react'
 
-import { Action, EventType } from '../reducers'
+import { EventType } from '../reducers'
+import { useAppContext } from '../contexts/AppContext'
 
 interface OwnProps {
   event: EventType
-  dispatch: React.Dispatch<Action>
 }
 
-export const Event: React.VFC<OwnProps> = ({ event, dispatch }) => {
+export const Event: React.VFC<OwnProps> = ({ event }) => {
+  const { dispatch } = useAppContext()
+  
   const handleDeleteClick = (event: EventType) => () => {
     const result = window.confirm(`イベント(id=${event.id})を削除してもよろしいですか？`)
     result && dispatch({type: 'DELETE_EVENT', ...event})
