@@ -1,10 +1,17 @@
 import React from 'react';
 import { CombinedState } from 'redux';
 import { Action, EventType } from '../reducers/events';
+import { OperationLogType } from '../reducers/operationLogs';
+
+export type AppStateType = {
+  events: EventType[];
+  operationLogs: OperationLogType[];
+};
 
 type AppContextType = {
   state: CombinedState<{
     events: EventType[];
+    operationLogs: OperationLogType[];
   }>;
   dispatch: React.Dispatch<Action>;
 };
