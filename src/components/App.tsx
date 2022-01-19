@@ -1,22 +1,22 @@
 import React, { useReducer } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { EventForm } from './EventForm'
-import { Events } from './Events'
-import reducer from '../reducers'
+import { EventForm } from './EventForm';
+import { Events } from './Events';
+import reducer from '../reducers';
 import { SetAppContextProvider } from '../contexts/AppContext';
 
 const App: React.FC = () => {
-  const [state, dispatch] = useReducer(reducer, [])
+  const [state, dispatch] = useReducer(reducer, []);
 
   return (
-    <SetAppContextProvider value={{state, dispatch}}>
-      <div className='container-fluid'>
+    <SetAppContextProvider value={{ state, dispatch }}>
+      <div className="container-fluid">
         <EventForm />
         <Events />
       </div>
     </SetAppContextProvider>
   );
-}
+};
 
 export default App;

@@ -1,13 +1,13 @@
-import { Event } from './Event'
+import { Event } from './Event';
 import { useAppContext } from '../contexts/AppContext';
 
 export const Events = () => {
-  const { state } = useAppContext()
+  const { state } = useAppContext();
 
-  return(
+  return (
     <>
       <h4>イベント一覧</h4>
-      <table className='table table-hover'>
+      <table className="table table-hover">
         <thead>
           <tr>
             <th>ID</th>
@@ -17,9 +17,11 @@ export const Events = () => {
           </tr>
         </thead>
         <tbody>
-          {state.map((event, index) => (<Event key={index} event={event} />))}
+          {state.map((event, index) => (
+            <Event key={index} event={event} />
+          ))}
         </tbody>
       </table>
     </>
-  )
-}
+  );
+};
