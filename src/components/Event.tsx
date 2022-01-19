@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EventType } from '../reducers';
+import { EventType } from '../reducers/events';
 import { useAppContext } from '../contexts/AppContext';
 
 interface OwnProps {

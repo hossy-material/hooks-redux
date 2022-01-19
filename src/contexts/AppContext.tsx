@@ -1,8 +1,11 @@
 import React from 'react';
-import { Action, EventType } from '../reducers';
+import { CombinedState } from 'redux';
+import { Action, EventType } from '../reducers/events';
 
 type AppContextType = {
-  state: EventType[];
+  state: CombinedState<{
+    events: EventType[];
+  }>;
   dispatch: React.Dispatch<Action>;
 };
 

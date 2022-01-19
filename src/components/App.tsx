@@ -6,8 +6,11 @@ import { Events } from './Events';
 import reducer from '../reducers';
 import { SetAppContextProvider } from '../contexts/AppContext';
 
-const App: React.FC = () => {
-  const [state, dispatch] = useReducer(reducer, []);
+const App: React.VFC = () => {
+  const initialState = {
+    events: [],
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <SetAppContextProvider value={{ state, dispatch }}>
