@@ -1,7 +1,10 @@
 import React from 'react';
 import { CombinedState } from 'redux';
-import { Action, EventType } from '../reducers/events';
-import { OperationLogType } from '../reducers/operationLogs';
+import { EventAction, EventType } from '../reducers/events';
+import {
+  OperationLogType,
+  OperationLogAction,
+} from '../reducers/operationLogs';
 
 export type AppStateType = {
   events: EventType[];
@@ -13,7 +16,7 @@ type AppContextType = {
     events: EventType[];
     operationLogs: OperationLogType[];
   }>;
-  dispatch: React.Dispatch<Action>;
+  dispatch: React.Dispatch<EventAction | OperationLogAction>;
 };
 
 function createCtx<T>() {

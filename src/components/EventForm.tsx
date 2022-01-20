@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { useAppContext } from '../contexts/AppContext';
+import { timeCurrentIso8601 } from '../utils';
 
 export const EventForm = () => {
   const { state, dispatch } = useAppContext();
@@ -17,7 +18,15 @@ export const EventForm = () => {
 
   const addEvent = (e: React.MouseEvent) => {
     e.preventDefault();
+
     dispatch({ type: 'CREATE_EVENT', title, body });
+
+    dispatch({
+      type: 'ADD_OPERATION_LOG',
+      description: 'イベントを作成しました',
+      operatedAt: timeCurrentIso8601(),
+    });
+
     setTitle('');
     setBody('');
   };
@@ -27,7 +36,14 @@ export const EventForm = () => {
     const result = window.confirm(
       '全てのイベントを本当に削除してもよろしいですか？',
     );
-    result && dispatch({ type: 'DELETE_ALL_EVENTS' });
+    if (result) {
+      dispatch({ type: 'DELETE_ALL_EVENTS' });
+      dispatch({
+        type: 'ADD_OPERATION_LOG',
+        description: '全てのイベントを削除しました。',
+        operatedAt: timeCurrentIso8601(),
+      });
+    }
   };
 
   const unCreatable = title === '' || body === '';

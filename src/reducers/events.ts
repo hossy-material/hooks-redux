@@ -1,15 +1,15 @@
 type ActionType = 'CREATE_EVENT' | 'DELETE_EVENT' | 'DELETE_ALL_EVENTS';
 
-export type Action = {
+export type EventAction = {
   type: ActionType;
   id?: number;
   title?: string;
   body?: string;
 };
 
-export type EventType = Omit<Action, 'type'>;
+export type EventType = Omit<EventAction, 'type'>;
 
-const events = (state: EventType[] = [], action: Action) => {
+const events = (state: EventType[] = [], action: EventAction) => {
   switch (action.type) {
     case 'CREATE_EVENT':
       const event: EventType = {

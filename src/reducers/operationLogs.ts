@@ -1,14 +1,17 @@
 type ActionType = 'ADD_OPERATION_LOG' | 'DELETE_ALL_OPERATION_LOGS';
 
-type Action = {
+export type OperationLogAction = {
   type: ActionType;
   description?: string;
   operatedAt?: string;
 };
 
-export type OperationLogType = Omit<Action, 'type'>;
+export type OperationLogType = Omit<OperationLogAction, 'type'>;
 
-const operationLogs = (state: OperationLogType[] = [], action: Action) => {
+const operationLogs = (
+  state: OperationLogType[] = [],
+  action: OperationLogAction,
+) => {
   switch (action.type) {
     case 'ADD_OPERATION_LOG':
       const operationLog: OperationLogType = {
