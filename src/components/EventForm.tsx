@@ -46,9 +46,24 @@ export const EventForm = () => {
     }
   };
 
+  const deleteAllOperationLogs = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    const result = window.confirm(
+      '全ての操作ログを本当に削除してもよろしいですか？',
+    );
+
+    if (result) {
+      dispatch({ type: 'DELETE_ALL_OPERATION_LOGS' });
+    }
+  };
+
   const unCreatable = title === '' || body === '';
 
   const canDelete = state.events.length === 0;
+
+  const canDeleteAllOperationLogs = state.operationLogs.length === 0;
+
   return (
     <>
       <h4>イベント作成フォーム</h4>
@@ -84,6 +99,13 @@ export const EventForm = () => {
             disabled={canDelete}
           >
             全てのイベントを削除する
+          </button>
+          <button
+            className="btn btn-danger"
+            onClick={deleteAllOperationLogs}
+            disabled={canDeleteAllOperationLogs}
+          >
+            全ての操作ログを削除する
           </button>
         </div>
       </form>

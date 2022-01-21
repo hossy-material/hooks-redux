@@ -2,6 +2,7 @@ import React from 'react';
 
 import { EventType } from '../reducers/events';
 import { useAppContext } from '../contexts/AppContext';
+import { timeCurrentIso8601 } from '../utils';
 
 interface OwnProps {
   event: EventType;
@@ -14,7 +15,16 @@ export const Event: React.VFC<OwnProps> = ({ event }) => {
     const result = window.confirm(
       `イベント(id=${event.id})を削除してもよろしいですか？`,
     );
-    result && dispatch({ type: 'DELETE_EVENT', ...event });
+
+    if (result) {
+      dispatch({ type: 'DELETE_EVENT', ...event });
+
+      dispatch({
+        type: 'ADD_OPERATION_LOG',
+        description: `イベント(id=${event.id})を削除しました。`,
+        operatedAt: timeCurrentIso8601(),
+      });
+    }
   };
 
   return (
